@@ -76,7 +76,7 @@ install.packages(c("Palimpsest", "BSgenome.Hsapiens.UCSC.hg19", "dplyr", "readr"
 Update the following variables in the script:  
 - **`print_statement`**: Message describing the unique patient count.  
 - **`gene_name`**: Name or pattern of the target gene (e.g., `"ALKBH"`).  
-- **`subtype`**: Cancer subtype for analysis (e.g., `"Triple-Negative Breast Cancer"`).  
+- **`subtype`**: Cancer subtype for analysis (e.g., `"TNBC"`).  
 - **`mut_location`**: File path to the mutation data.  
 - **`clinical_location`**: File path to the clinical data.  
 - **`num_of_denovo_sings`**: Number of de novo signatures to extract.  
