@@ -123,6 +123,9 @@ source("palimpsest_pipeline.R")
    - Colors in pie charts may not render as intended. Adjust the color mapping manually if needed.  
 
 ---
+## Output (this is a powerBI dashboard. Need to be made separately)
+<img width="722" alt="image" src="https://github.com/user-attachments/assets/0d1c57ea-4bf8-4a66-ae16-12d68685bc7f">
+
 
 ## Additional Instructions  
 
