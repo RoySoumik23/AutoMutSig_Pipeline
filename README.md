@@ -169,5 +169,3 @@ Contributions are welcome! Please fork the repository, make changes, and submit 
 Special thanks to the developers of:  
 - The **Palimpsest R package** for mutation signature analysis.  
 - The **BSgenome project** for genomic reference data integration.  
-
-hihihihihihihihi
