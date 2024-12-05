@@ -6,6 +6,15 @@
 # 5. Update all placeholder paths and variables (gene_name, subtype, file paths, etc.) before running the script.
 # 6. Run each section sequentially to ensure proper setup and avoid runtime errors.
 
+# Libraries
+library(dplyr)
+library(readr)
+library(purrr)
+library(tidyr)
+library(BSgenome.Hsapiens.UCSC.hg19)
+# library(BSgenome.Hsapiens.UCSC.hg38)
+library(Palimpsest)
+
 # CHANGE THESE VARIABLES
 gene_name <- "^name_of_the_target_gene"  # Gene of interest (do not remove "^")
 subtype <- "cancer_subtype as mentioned in the clinical file"  # Specific cancer subtype
@@ -83,25 +92,16 @@ vcf_df$CHROM <- paste0("chr", vcf_df$CHROM)
 View(vcf_df)
 
 
-#-Performing Palimpsest analysis to find out:----
+#-Palimpsest analysis----
 # Scanning for de novo mutations
 
 #-STEP: 1 - Load Palimpsest & reference genome packages----
-# 
-library(Palimpsest)
-# library(BSgenome.Hsapiens.UCSC.hg38)
-library(BSgenome.Hsapiens.UCSC.hg19)
 
 #-STEP: 2 - Saving the vcf file----
 write.csv(vcf_df, file = paste0(result_dir, "/", "vcf_", gene_name, "_", subtype, "_.csv"))
 
 #-STEP: 3 - Load and annotate mutation data----
 vcf <- annotate_VCF(vcf = vcf_df, ref_genome = BSgenome.Hsapiens.UCSC.hg19)
-
-# ERROR WITH hg38
-# [1] Adding gene, strand and SBS category annotations...
-# Error in loadFUN(x, seqname, ranges) : 
-#   trying to load regions beyond the boundaries of non-circular sequence "chr10"
 
 #-STEP: 4 - De Novo Extraction of Single Base Substitution (SBS) Signatures----
 SBS_result_dir <- file.path(result_dir,"SBS_denovo"); if(!file.exists(SBS_result_dir)) dir.create(SBS_result_dir)
@@ -199,9 +199,7 @@ dna_rep_genes <- c("APEX1", "UNG", "LIG1", "POLB", "RPA", "DDB1", "MLH1", "MSH2"
 check_df <- subset(all_gene_df, toupper(Hugo_Symbol) %in% dna_rep_genes) # taking from the df that have all the gene mutation data for patient IDs who ONLY & gene +ve.
 write.csv(check_df, file = paste0(SBS_result_dir, "/check_genes.csv"), quote = FALSE, row.names = FALSE)
 
-#-FINAL MAGIC----
-library(dplyr)
-
+#-RESULT COMPILATION----
 # gene ~~
 names(rm_silent_gene) <- toupper(names(rm_silent_gene))
 gene_final <- rm_silent_gene[, c(ncol(rm_silent_gene), 1, 10, 40)]
@@ -226,7 +224,6 @@ rm(dna_rep_grouped)
 # denovo count ~~
 denovo_count <- SBS_signatures_exp[["sig_nums"]]
 denovo_count$PATIENT_ID <- rownames(denovo_count)
-library(tidyr)
 denovo_count <- pivot_longer(denovo_count, cols = c(1:ncol(denovo_count)-1), names_to = "PALIMP_EQUIVALENT", values_to = "Count")
 denovo_count <- subset(denovo_count, denovo_count$Count != 0)
 denovo_count <- denovo_count[, c(1,2)]
@@ -266,7 +263,6 @@ prop_df$Proportion <- paste0(prop_df$Proportion, "%")
 # merge not needed
 
 #-final merge----
-library(purrr)
 df_pnt_ids_list <- list(count_merged, gene_merged, dna_rep_merged, denovo_count)
 df_pnt_ids_merged_df <- reduce( df_pnt_ids_list,full_join, by = "PATIENT_ID")
 # View(df_pnt_ids_merged_df)
@@ -277,6 +273,6 @@ final_merged <- left_join(final_merged, compare_merged, by = "PALIMP_EQUIVALENT"
 final_merged <- final_merged[order(final_merged$Mutation_Count), ]
 View(final_merged)
 
-library(readr)
+#logging
 write_tsv(final_merged, file = paste0(result_dir, "/", "final_merged_", gene_name, "_", subtype, "_.tsv"))
 #done
