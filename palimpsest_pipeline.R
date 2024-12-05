@@ -264,7 +264,7 @@ prop_df$Proportion <- paste0(prop_df$Proportion, "%")
 
 #-final merge----
 df_pnt_ids_list <- list(count_merged, gene_merged, dna_rep_merged, denovo_count)
-df_pnt_ids_merged_df <- reduce( df_pnt_ids_list,full_join, by = "PATIENT_ID")
+df_pnt_ids_merged_df <- purrr::reduce(df_pnt_ids_list, dplyr::full_join, by = "PATIENT_ID")
 # View(df_pnt_ids_merged_df)
 
 final_merged <- left_join(df_pnt_ids_merged_df, prop_df, by = c("PALIMP_EQUIVALENT", "PATIENT_ID"))
