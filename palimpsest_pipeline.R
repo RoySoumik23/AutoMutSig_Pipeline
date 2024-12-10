@@ -11,14 +11,26 @@
 #   install.packages("name_of_package")
 # }
 
-# Libraries
-library(dplyr)
-library(readr)
-library(purrr)
-library(tidyr)
-library(BSgenome.Hsapiens.UCSC.hg19)
-# library(BSgenome.Hsapiens.UCSC.hg38)
-library(Palimpsest)
+# List of required packages
+required_packages <- c(
+  "dplyr", 
+  "readr", 
+  "purrr", 
+  "tidyr", 
+  "BSgenome.Hsapiens.UCSC.hg19", # "BSgenome.Hsapiens.UCSC.hg38"
+  "Palimpsest"
+)
+
+# Install any missing packages
+for (pkg in required_packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+# Load all packages
+lapply(required_packages, library, character.only = TRUE)
+
 
 # CHANGE THESE VARIABLES
 gene_name <- "^name_of_the_target_gene"  # Gene of interest (do not remove "^")
