@@ -8,14 +8,14 @@
 # 6. The generated PDFs will be saved in the specified output directory (`SBS_denovo` folder).
 
 # Source the libraries setup
-source("/home/shivalik/Downloads/R codes/libraries_and_setup.R")
+source("https://raw.githubusercontent.com/RoySoumik23/AutoMutSig_Pipeline/refs/heads/main/libraries_and_setup.R")
 
-result_parent_dir <- "/home/shivalik2/Soumik/my_codes/Results/Discovery/"
+#result_parent_dir <- "/home/shivalik2/Soumik/my_codes/Results/Discovery/"
 file_type <- "SBS_denovo/Comparison_table.txt" # The end location of the comparison file created by the pipeline
 
 # CHANGE THESE VARIABLES
-cancer_type <- "^ALKBH_BRCA_Basal_Palimpsest/" # Specify the cancer type folder (e.g., "Non^ALKBH_BRCA_Basal_Palimpsest/")
-final_merged_file <- "final_merged_^ALKBH_BRCA_Basal_.tsv" # Specify the final merged folder (e.g., "final_merged_^ALKBH_BRCA_Basal_.tsv")
+cancer_type <- "__________/" # Specify the cancer type folder (e.g., "Non^ALKBH_BRCA_Basal_Palimpsest/")
+final_merged_file <- "__________" # Specify the final merged folder (e.g., "final_merged_^ALKBH_BRCA_Basal_.tsv")
 
 # Read the data
 cancer_df <- read.delim2(paste0(result_parent_dir, cancer_type, file_type), sep = " ")
