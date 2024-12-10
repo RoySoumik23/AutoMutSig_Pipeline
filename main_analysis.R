@@ -1,3 +1,4 @@
+# main_analysis.R
 clinical_df <- read.delim2(clinical_location, header = TRUE, skip = 4, stringsAsFactors = FALSE)
 # log a summary
 write(paste(print_statement, "in clinical dataframe are:", length(unique(clinical_df$PATIENT_ID))), file = details_file, append = TRUE)
