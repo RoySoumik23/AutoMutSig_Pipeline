@@ -6,11 +6,7 @@
 # 5. Update all placeholder paths and variables (gene_name, subtype, file paths, etc.) before running the script.
 # 6. Run each section sequentially to ensure proper setup and avoid runtime errors.
 
-# Install the required packages if not already installed
-# if (!requireNamespace("name_of_package", quietly = TRUE)) {
-#   install.packages("name_of_package")
-# }
-
+# Requried libraries
 # List of required packages
 required_packages <- c(
   "dplyr", 
@@ -126,7 +122,7 @@ SBS_input <- palimpsest_input(vcf = vcf, Type = "SBS")
 
 #NMF extraction
 NMF_data <- file.path(SBS_result_dir, "NMF_extraction"); if(!file.exists(NMF_data)) dir.create(NMF_data)
-#to automatically generate the optimal number of denovo signatures
+# To automatically extract the optimal number of denovo signatures
 # SBS_denovo_sigs <- NMF_Extraction(input_matrices = SBS_input, range_of_sigs = 1:10, nrun = 10, resdir = NMF_data)
 # OR
 SBS_denovo_sigs <- NMF_Extraction(input_matrices = SBS_input, num_of_sigs = num_of_denovo_sings, nrun = 10, resdir = NMF_data)
