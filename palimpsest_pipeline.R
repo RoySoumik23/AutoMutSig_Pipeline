@@ -6,6 +6,11 @@
 # 5. Update all placeholder paths and variables (gene_name, subtype, file paths, etc.) before running the script.
 # 6. Run each section sequentially to ensure proper setup and avoid runtime errors.
 
+# Install the required packages if not already installed
+# if (!requireNamespace("name_of_package", quietly = TRUE)) {
+#   install.packages("name_of_package")
+# }
+
 # Libraries
 library(dplyr)
 library(readr)
