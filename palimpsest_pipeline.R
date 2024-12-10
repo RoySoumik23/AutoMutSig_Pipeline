@@ -52,7 +52,7 @@ write(paste(print_statement, "in mutation dataframe are:", length(unique(mut_cle
 #-Clinical Data & further filtration----
 # Do the necessary data cleaning as needed. column names should be in UPPERCASE and should have ("PATIENT_ID" & "SUBTYPE") colnames
 
-# Once all the above steps are done, select everything from this line till the end and hit run.
+### ONCE YOU'VE COMPLETED THE SETUP STEPS ABOVE, SELECT EVERYTHING FROM THIS LINE ONWARD AND RUN THE CODE TO GENERATE YOUR OUTPUTS ###
 clinical_df <- read.delim2(clinical_location, header = TRUE, skip = 4, stringsAsFactors = FALSE)
 # log a summary
 write(paste(print_statement, "in clinical dataframe are:", length(unique(clinical_df$PATIENT_ID))), file = details_file, append = TRUE)
