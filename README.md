@@ -63,13 +63,6 @@ git clone https://github.com/RoySoumik23/AutoMutSig_Pipeline.git
 cd AutoMutSig_Pipeline
 ```  
 
-### Install Required R Packages  
-```R
-install.packages(c("Palimpsest", "BSgenome.Hsapiens.UCSC.hg19", "dplyr", "readr", "purrr", "ggplot2", "tidyr"))  
-```  
-
----
-
 ## Usage  
 
 ### Step 1: Configure Variables  
