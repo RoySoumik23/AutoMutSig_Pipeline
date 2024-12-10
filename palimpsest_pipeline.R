@@ -6,27 +6,8 @@
 # 5. Update all placeholder paths and variables (gene_name, subtype, file paths, etc.) before running the script.
 # 6. Run each section sequentially to ensure proper setup and avoid runtime errors.
 
-# Requried libraries
-# List of required packages
-required_packages <- c(
-  "dplyr", 
-  "readr", 
-  "purrr", 
-  "tidyr", 
-  "BSgenome.Hsapiens.UCSC.hg19", # "BSgenome.Hsapiens.UCSC.hg38"
-  "Palimpsest"
-)
-
-# Install any missing packages
-for (pkg in required_packages) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    install.packages(pkg)
-  }
-}
-
-# Load all packages
-lapply(required_packages, library, character.only = TRUE)
-
+# Install & load required libraries
+source("https://raw.githubusercontent.com/RoySoumik23/AutoMutSig_Pipeline/refs/heads/main/libraries_and_setup.R")
 
 # CHANGE THESE VARIABLES
 gene_name <- "^name_of_the_target_gene"  # Gene of interest (do not remove "^")
@@ -68,5 +49,7 @@ write(paste(print_statement, "in mutation dataframe are:", length(unique(mut_cle
 # Source the main analysis
 source("https://raw.githubusercontent.com/RoySoumik23/AutoMutSig_Pipeline/refs/heads/main/main_analysis.R")
 
+#-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
 # For supplementary visualisation
-source ("https://raw.githubusercontent.com/RoySoumik23/AutoMutSig_Pipeline/refs/heads/main/supplementary_visualisation.R
+source ("https://raw.githubusercontent.com/RoySoumik23/AutoMutSig_Pipeline/refs/heads/main/supplementary_visualisation.R")
