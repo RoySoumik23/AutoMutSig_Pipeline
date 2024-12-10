@@ -8,8 +8,7 @@ required_packages <- c(
   "Palimpsest",
   "tidyr", 
   "pheatmap", 
-  "tidyverse", 
-  "corrgram"
+  "tidyverse"
 )
 
 # Install any missing packages
